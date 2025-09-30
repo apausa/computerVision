@@ -208,5 +208,5 @@ __marimo__/
 
 # Custom
 .DS_Store
-datasets/xview_detection
-datasets/xview_recognition
+imageRecognition/xview_recognition
+objectDetection/xview_detection
