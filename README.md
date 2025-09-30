@@ -1,2 +1,3 @@
 # computerVision
-Computer Vision project at Technical University of Madrid
+
+Image recognition and object detection challenges
