@@ -1,0 +1,11 @@
+name: computerVision
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - tensorflow-deps # For Apple Silicon optimization
+  - ipykernel # Compatibility with Jupyter Notebooks
+  - rasterio
+  - scikit-learn
+  - matplotlib
+prefix: /Users/pablo/miniconda3/envs/computerVision
