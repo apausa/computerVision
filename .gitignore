@@ -210,4 +210,4 @@ __marimo__/
 .DS_Store
 imageRecognition/xview_recognition
 objectDetection/xview_detection
-.zip
+*.zip
