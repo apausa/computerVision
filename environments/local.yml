@@ -4,7 +4,7 @@ channels:
 dependencies:
   - python=3.10
   - tensorflow-deps # For Apple Silicon optimization
-  - ipykernel # Compatibility with Jupyter Notebooks
+  - ipykernel
   - rasterio
   - scikit-learn
   - matplotlib
