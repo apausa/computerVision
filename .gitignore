@@ -211,3 +211,4 @@ __marimo__/
 imageRecognition/xview_recognition
 objectDetection/xview_detection
 *.zip
+*.keras
