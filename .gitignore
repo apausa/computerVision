@@ -208,7 +208,10 @@ __marimo__/
 
 # Custom
 .DS_Store
-imageRecognition/xview_recognition
-objectDetection/xview_detection
+imageRecognition/xview_recognition/xview_train
+imageRecognition/xview_recognition/xview_test
+objectDetection/xview_detection/xview_train
+objectDetection/xview_detection/xview_test
+
 *.zip
 *.keras
