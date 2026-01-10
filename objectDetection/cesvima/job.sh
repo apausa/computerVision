@@ -16,11 +16,11 @@ export TF_ENABLE_ONEDNN_OPTS=0
 export PYDEVD_DISABLE_FILE_VALIDATION=1
 
 # === CARGA DE MÓDULOS ===
+module --force purge
+module load apps/2021
+module load PyTorch/1.10.0-foss-2021a-CUDA-11.3.1
 module load Jupyter-bundle/20230823-GCCcore-12.3.0
 module load SciPy-bundle/2023.07-gfbf-2023a
-module load matplotlib/3.7.2-gfbf-2023a
-module load rasterio/1.3.9-foss-2023a
 module load scikit-learn/1.4.2-gfbf-2023a
-module load PyTorch/2.1.2-foss-2023a
 
 srun jupyter nbconvert --execute --to notebook --inplace /home/x467/x467028/yolov11.ipynb
