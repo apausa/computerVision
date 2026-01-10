@@ -1,26 +1,45 @@
 #!/bin/bash
 #SBATCH --job-name=computerVision
-#SBATCH --output=computerVision.log
+#SBATCH --output=output.log
 #SBATCH --time=12:00:00
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=4
+#SBATCH --cpus-per-task=16
 #SBATCH --partition=standard-gpu
 #SBATCH --gres=gpu:a100:1
-#SBATCH --mem=8G
+#SBATCH --mem=32G
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=pablo.apausa@alumnos.upm.es
 
-# === DISABLE VERBOSE TF LOGGING ===
-export TF_CPP_MIN_LOG_LEVEL=3
-export TF_ENABLE_ONEDNN_OPTS=0
-export PYDEVD_DISABLE_FILE_VALIDATION=1
+SECONDS=0
 
-# === CARGA DE MÓDULOS ===
+echo "1 Loading modules"
 module --force purge
 module load apps/2021
-module load PyTorch/1.10.0-foss-2021a-CUDA-11.3.1
-module load Jupyter-bundle/20230823-GCCcore-12.3.0
-module load SciPy-bundle/2023.07-gfbf-2023a
-module load scikit-learn/1.4.2-gfbf-2023a
+module load Anaconda3/2025.06-1
 
-srun jupyter nbconvert --execute --to notebook --inplace /home/x467/x467028/yolov11.ipynb
+echo "2 Initializing conda"
+source /media/apps/avx512-2021/software/Anaconda3/2025.06-1/etc/profile.d/conda.sh
+
+# Workaround for Intel library conflicts
+export MKL_THREADING_LAYER=GNU
+
+echo "3 Activating and testing environment"
+conda run -n computerVision python - << 'EOF'
+import torch
+print("> PyTorch version:", torch.__version__)
+if torch.cuda.is_available(): print("> GPU:", torch.cuda.get_device_name(0))
+else: print("> No GPU")
+EOF
+
+echo "4. Running notebook"
+srun conda run -n computerVision python -m jupyter nbconvert --execute --to notebook --inplace /home/x467/x467028/yolov11.ipynb
+
+status=$?
+
+if [ $status -ne 0 ]; then
+    echo "[Error] Notebook failed with code $status"
+  else
+    echo "[Success] Notebook completed"
+    printf "Detector runtime: %02d:%02d:%02d (HH:MM:SS)\n" \
+      $((SECONDS/3600)) $((SECONDS%3600/60)) $((SECONDS%60))
+fi
