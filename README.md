@@ -6,16 +6,19 @@ Image recognition and object detection challenges
 
 ### Local computer
 
-Export content
+Login
 
 ```
-scp /Users/pablo/Desktop/repos/computerVision/objectDetection/cesvima/job.sh x467028@magerit.cesvima.upm.es:~/
 ssh x467028@magerit.cesvima.upm.es
-scp x467028@magerit.cesvima.upm.es:~/ /Users/pablo/Desktop/
-
 ```
 
-Import content
+Send content
+
+```
+scp /Users/pablo/Desktop/repos/computerVision/objectDetection/cesvima/{job.sh,yolov11.ipynb} x467028@magerit.cesvima.upm.es:~/
+```
+
+Receive content
 
 ```
 rsync -avz --progress x467028@magerit.cesvima.upm.es:/home/x467/x467028/{yolov11_test,runs,prediction.json,yolov11.ipynb,output.log} /Users/pablo/desktop/cesvima/
