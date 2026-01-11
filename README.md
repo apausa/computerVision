@@ -26,7 +26,7 @@ rsync -avz --progress x467028@magerit.cesvima.upm.es:/home/x467/x467028/{yolov11
 
 ### Remote computer
 
-1. Load Anaconda
+#### 1. Load Anaconda
 
 ```
 module --force purge
@@ -34,20 +34,20 @@ module load apps/2021
 module load Anaconda3/2025.06-1
 ```
 
-2. Initialize Anaconda
+#### 2. Initialize Anaconda
 
 ```
 source /media/apps/avx512-2021/software/Anaconda3/2025.06-1/etc/profile.d/conda.sh
 ```
 
-3. Create and activate environment
+#### 3. Create and activate environment
 
 ```
 conda create -n computerVision python=3.10
 conda activate computerVision
 ```
 
-5. Install dependencies (this might take forever)
+#### 5. Install dependencies (this might take forever)
 
 ```
 conda install numpy scikit-learn jupyter
@@ -59,11 +59,16 @@ pip install --no-cache-dir torch torchvision torchaudio --index-url https://down
 pip install --no-cache-dir ultralytics
 ```
 
-4. Run job
+#### 6. Run job
+
+-- Opcional: eliminar archivos del run anterior
+
+```
+rm -rf yolov11_test runs prediction.json datasets data.yaml
+
+```
 
 ```
 sbatch job.sh
 squeue
 ```
-
-# conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia --override-channels
