@@ -20,7 +20,6 @@ module load Anaconda3/2025.06-1
 echo "2 Initializing conda"
 source /media/apps/avx512-2021/software/Anaconda3/2025.06-1/etc/profile.d/conda.sh
 
-# Workaround for Intel library conflicts
 export MKL_THREADING_LAYER=GNU
 
 echo "3 Activating and testing environment"
